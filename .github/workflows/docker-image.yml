@@ -13,13 +13,19 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      
     - name: setup java
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin' # See 'Supported distributions' for available options
         java-version: '17'
+        
     - name: build using maven
       run: mvn clean install
+      
     - name: run test
       run: mvn test
+      
+    - name: setup docker buildx
+      uses: docker/setup-buildx-action@v2
       
